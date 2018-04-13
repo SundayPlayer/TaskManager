@@ -76,10 +76,28 @@ fos_user:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
 
+easy_admin:
+    entities:
+        Task:
+            class: AppBundle\Entity\Task
+            list:
+                fields:
+                    - id
+                    - title
+                    - deadLine
+                    - users
+            form:
+                fields:
+                    - title
+                    - description
+                    - deadLine
+                    - users
+                    - { property: 'imageFile', type: 'vich_image' }
+
 vich_uploader:
     db_driver: orm # or mongodb or propel or phpcr
     mappings:
         task_image:
-            uri_prefix: /images/tasks
+            uri_prefix: '%app.path.task_images%'
             upload_destination: '%kernel.project_dir%/web/images/tasks'
             namer: Vich\UploaderBundle\Naming\OrignameNamer

@@ -11,6 +11,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *
  * @ORM\Table(name="task")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TaskRepository")
+ *
+ * @Vich\Uploadable
  */
 class Task
 {
@@ -61,21 +63,21 @@ class Task
     private $imageFile;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */
     private $imageName;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      *
      * @var integer
      */
     private $imageSize;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      *
      * @var \DateTime
      */
@@ -237,5 +239,14 @@ class Task
     public function getImageSize(): ?int
     {
         return $this->imageSize;
+    }
+
+    public function __construct() {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 }
