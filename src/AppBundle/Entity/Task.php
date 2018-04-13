@@ -241,6 +241,14 @@ class Task
         return $this->imageSize;
     }
 
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt(): \DateTime
+    {
+        return $this->updatedAt;
+    }
+
     public function __construct() {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }

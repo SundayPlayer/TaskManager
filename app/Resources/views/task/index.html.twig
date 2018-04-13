@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tasks list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Deadline</th>
+                <th>Imagename</th>
+                <th>Imagesize</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+            <tr>
+                <td><a href="{{ path('api_task_show', { 'id': task.id }) }}">{{ task.id }}</a></td>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                <td>{% if task.deadLine %}{{ task.deadLine|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ task.imageName }}</td>
+                <td>{{ task.imageSize }}</td>
+                <td>{% if task.updatedAt %}{{ task.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('api_task_show', { 'id': task.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('api_task_edit', { 'id': task.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('api_task_new') }}">Create a new task</a>
+        </li>
+    </ul>
+{% endblock %}
