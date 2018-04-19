@@ -27,6 +27,11 @@ class User extends BaseUser
     private $tasks;
 
     /**
+     * @var Board[]|\Doctrine\Common\Collections\ArrayCollection
+     */
+    private $boards;
+
+    /**
      * @return Task[]|\Doctrine\Common\Collections\ArrayCollection
      */
     public function getTasks()
@@ -42,9 +47,29 @@ class User extends BaseUser
         $this->tasks = $tasks;
     }
 
+    /**
+     * @return Board[]|ArrayCollection
+     */
+    public function getBoards()
+    {
+        return $this->boards;
+    }
+
+    /**
+     * @param $board Board
+     */
+    public function addBoard($board)
+    {
+        $this->boards[] = $board;
+    }
+
+    /**
+     * User constructor.
+     */
     public function __construct()
     {
         parent::__construct();
-        $this->tasks = new ArrayCollection();
+        $this->tasks  = new ArrayCollection();
+        $this->boards = new ArrayCollection();
     }
 }
