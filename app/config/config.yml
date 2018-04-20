@@ -96,6 +96,7 @@ easy_admin:
                     - description
                     - deadLine
                     - users
+                    - rows
                     - { property: 'imageFile', type: 'vich_image' }
 
 vich_uploader:

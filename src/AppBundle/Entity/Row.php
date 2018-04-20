@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,9 +31,9 @@ class Row
     /**
      * @var Task
      *
-     * @ORM\ManyToOne(targetEntity="Task", inversedBy="row")
+     * @ORM\ManyToOne(targetEntity="Task", inversedBy="rows")
      */
-    private $tasks;
+    private $task;
 
     /**
      * @var Board
@@ -78,19 +77,19 @@ class Row
     }
 
     /**
-     * @return Task[]|ArrayCollection
+     * @return Task
      */
-    public function getTasks()
+    public function getTask()
     {
-        return $this->tasks;
+        return $this->task;
     }
 
     /**
-     * @param Task[]|ArrayCollection $tasks
+     * @param Task $task
      */
-    public function setTasks($tasks)
+    public function setTask($task)
     {
-        $this->tasks = $tasks;
+        $this->task = $task;
     }
 
     /**
@@ -109,8 +108,11 @@ class Row
         $this->board = $board;
     }
 
-    public function __construct()
+    /**
+     * @return string
+     */
+    public function __toString()
     {
-        $this->tasks = new ArrayCollection();
+        return $this->name;
     }
 }

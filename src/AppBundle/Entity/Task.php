@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -84,9 +85,9 @@ class Task
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="Row", mappedBy="tasks")
+     * @ORM\OneToMany(targetEntity="Row", mappedBy="task")
      */
-    private $row;
+    private $rows;
 
     /**
      * Get id
@@ -255,19 +256,19 @@ class Task
     }
 
     /**
-     * @return Row
+     * @return Row[]|ArrayCollection
      */
-    public function getRow()
+    public function getRows()
     {
-        return $this->row;
+        return $this->rows;
     }
 
     /**
-     * @param Row $row
+     * @param Row[]|ArrayCollection $rows
      */
-    public function setRows($row)
+    public function setRows($rows)
     {
-        $this->row = $row;
+        $this->rows = $rows;
     }
 
     public function __construct() {
