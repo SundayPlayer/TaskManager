@@ -78,6 +78,10 @@ fos_user:
 
 easy_admin:
     entities:
+        Board:
+            class: AppBundle\Entity\Board
+        Row:
+            class: AppBundle\Entity\Row
         Task:
             class: AppBundle\Entity\Task
             list:

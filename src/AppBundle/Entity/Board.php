@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +36,12 @@ class Board
      */
     private $users;
 
+    /**
+     * @var Row[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Row", mappedBy="board")
+     */
+    private $rows;
 
     /**
      * Get id.
@@ -79,11 +86,28 @@ class Board
     }
 
     /**
-     * @param $user User
+     * @param $users User[]|\Doctrine\Common\Collections\ArrayCollection
      */
-    public function addUser($user)
+    public function setUsers($users)
     {
-        $this->users[] = $user;
+        $this->users = $users;
+    }
+
+    /**
+     * @return Row[]|\Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getRows()
+    {
+        return $this->rows;
+    }
+
+    /**
+     * @param Row[]|\Doctrine\Common\Collections\ArrayCollection
+     */
+    public function setRows($rows)
+    {
+        dump($rows);
+        $this->rows = $rows;
     }
 
     /**
@@ -92,5 +116,11 @@ class Board
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->rows = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

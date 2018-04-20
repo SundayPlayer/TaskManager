@@ -28,6 +28,8 @@ class User extends BaseUser
 
     /**
      * @var Board[]|\Doctrine\Common\Collections\ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Board", mappedBy="users")
      */
     private $boards;
 

@@ -84,6 +84,11 @@ class Task
     private $updatedAt;
 
     /**
+     * @ORM\OneToMany(targetEntity="Row", mappedBy="tasks")
+     */
+    private $row;
+
+    /**
      * Get id
      *
      * @return int
@@ -247,6 +252,22 @@ class Task
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * @return Row
+     */
+    public function getRow()
+    {
+        return $this->row;
+    }
+
+    /**
+     * @param Row $row
+     */
+    public function setRows($row)
+    {
+        $this->row = $row;
     }
 
     public function __construct() {
