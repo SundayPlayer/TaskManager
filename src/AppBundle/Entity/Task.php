@@ -85,9 +85,9 @@ class Task
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="Row", mappedBy="task")
+     * @ORM\ManyToOne(targetEntity="Row", inversedBy="tasks")
      */
-    private $rows;
+    private $row;
 
     /**
      * Get id
@@ -256,23 +256,23 @@ class Task
     }
 
     /**
-     * @return Row[]|ArrayCollection
+     * @return Row
      */
-    public function getRows()
+    public function getRow()
     {
-        return $this->rows;
+        return $this->row;
     }
 
     /**
-     * @param Row[]|ArrayCollection $rows
+     * @param Row $row
      */
-    public function setRows($rows)
+    public function setRow($row)
     {
-        $this->rows = $rows;
+        $this->row = $row;
     }
 
     public function __construct() {
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function __toString()

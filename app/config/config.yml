@@ -90,13 +90,14 @@ easy_admin:
                     - title
                     - deadLine
                     - users
+                    - row
             form:
                 fields:
                     - title
                     - description
                     - deadLine
                     - users
-                    - rows
+                    - row
                     - { property: 'imageFile', type: 'vich_image' }
 
 vich_uploader:
